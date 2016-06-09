@@ -15,3 +15,5 @@ The Rakam integration contains these parts:
 * Setting user properties and logging events with properties in ```GameEngine.mHandler```
 
 Thanks to Balazs Lecz for creating the original game. See https://github.com/masayukig/tiltmazes for the original source and more information.
+
+**This library is a fork of [Amplitude-Android-Demo](https://github.com/amplitude/Android-Demo)** and adopted for Rakam SDK
