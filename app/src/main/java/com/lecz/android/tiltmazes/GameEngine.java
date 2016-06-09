@@ -43,11 +43,11 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.widget.TextView;
 
-import com.amplitude.api.Amplitude;
-import com.amplitude.api.Identify;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import io.rakam.api.Identify;
+import io.rakam.api.Rakam;
 
 public class GameEngine {
     private SensorManager mSensorManager;
@@ -181,7 +181,7 @@ public class GameEngine {
                                 userProperties.put("Mazes Completed", mDB.solvedMazes().getCount());
                             } catch (JSONException exception) {
                             }
-                            Amplitude.getInstance().setUserProperties(userProperties);
+                            Rakam.getInstance().setUserProperties(userProperties);
 
                             // Track the maze completion in amplitude
                             JSONObject eventProperties = new JSONObject();
@@ -191,11 +191,11 @@ public class GameEngine {
                             } catch (JSONException exception) {
                             }
 
-                            Amplitude.getInstance().logEvent("Maze Completed", eventProperties);
-                            Amplitude.getInstance().identify(new Identify().add("total steps", mStepCount));
-                            Amplitude.getInstance().identify(new Identify().add("mazes completed", 1));
+                            Rakam.getInstance().logEvent("Maze Completed", eventProperties);
+                            Rakam.getInstance().identify(new Identify().add("total steps", mStepCount));
+                            Rakam.getInstance().identify(new Identify().add("mazes completed", 1));
                             Long tsLong = System.currentTimeMillis() / 1000;
-                            Amplitude.getInstance().identify(new Identify().setOnce("first maze completed time", tsLong));
+                            Rakam.getInstance().identify(new Identify().setOnce("first maze completed time", tsLong));
 
                             if (mDB.unsolvedMazes().getCount() == 0) {
                                 mAllMazesSolvedDialog.setMessage(

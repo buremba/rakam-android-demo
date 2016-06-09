@@ -43,7 +43,7 @@
 
     <string name="select_maze_title">TiltMazes - Select maze</string>
 
-    <string name="about_text"><b>Amplitude Demo</b>\n
+    <string name="about_text"><b>Rakam Demo</b>\n
     The challenge is to guide the ball around the tray and collect all the squares.
     Tilt the phone to start the ball rolling.\n
     The ball rolls in a straight line until it hits a wall, you can then tilt again.

@@ -50,7 +50,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.amplitude.api.Amplitude;
+import io.rakam.api.Rakam;
 
 public class TiltMazesActivity extends Activity {
     protected PowerManager.WakeLock mWakeLock;
@@ -81,9 +81,9 @@ public class TiltMazesActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Amplitude.getInstance().initialize(this, "2bc81f5feed9ab046f7fbaf6c40fe1b6");
-        Amplitude.getInstance().enableForegroundTracking(getApplication()).trackSessionEvents(true);
-        Amplitude.getInstance().setLogLevel(Log.VERBOSE);
+        Rakam.getInstance().initialize(this, "2bc81f5feed9ab046f7fbaf6c40fe1b6");
+        Rakam.getInstance().enableForegroundTracking(getApplication()).trackSessionEvents(true);
+        Rakam.getInstance().setLogLevel(Log.VERBOSE);
 
         final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "TiltMazes");
@@ -291,7 +291,7 @@ public class TiltMazesActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        Amplitude.getInstance().logEvent("app resumed");
+        Rakam.getInstance().logEvent("app resumed");
 
         mGameEngine.registerListener();
         mWakeLock.acquire();
