@@ -21,9 +21,9 @@ android {
 
 dependencies {
     compile 'com.google.android.gms:play-services:8.4.0'
-    if (rakamUseLocal.toBoolean()) {
-        compile files('libs/amplitude-android-' + rakamVersion + '-with-dependencies.jar')
-    } else {
-        compile 'com.amplitude:android-sdk:' + rakamVersion
-    }
+//    if (rakamUseLocal.toBoolean()) {
+//        compile files('libs/rakam-android-' + rakamVersion + '-with-dependencies.jar')
+//    } else {
+        compile 'io.rakam:android-sdk:' + rakamVersion
+//    }
 }

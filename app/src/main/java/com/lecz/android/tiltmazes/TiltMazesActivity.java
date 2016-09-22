@@ -50,7 +50,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import io.rakam.api.Rakam;
+import io.rakam.api.RakamClient;
+
+import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 
 public class TiltMazesActivity extends Activity {
     protected PowerManager.WakeLock mWakeLock;
@@ -81,9 +87,21 @@ public class TiltMazesActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Rakam.getInstance().initialize(this, "2bc81f5feed9ab046f7fbaf6c40fe1b6");
-        Rakam.getInstance().enableForegroundTracking(getApplication()).trackSessionEvents(true);
-        Rakam.getInstance().setLogLevel(Log.VERBOSE);
+        RakamClient instance = Rakam.getInstance();
+        instance.initialize(this, "5v32vfbvftbpcbodvtlduf4mcnc5lr1h9jrfik8qd75eelhnbr85sd1j133s1mh8");
+        instance.enableForegroundTracking(getApplication()).trackSessionEvents(true);
+        instance.setLogLevel(Log.VERBOSE);
+        // if you're using custom Rakam API set it
+        URL apiUrl;
+        try {
+            apiUrl = new URL("http://192.168.0.11:9998");
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+
+        instance.setApiUrl(apiUrl);
+
+        instance.setEventUploadPeriodMillis(1);
 
         final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "TiltMazes");
